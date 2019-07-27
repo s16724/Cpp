@@ -1,0 +1,95 @@
+#include <iostream>
+#include <conio.h>
+#include <ctime>
+
+using namespace std;
+
+void rozmiarTab(int *wskRozmiar)
+{
+	cout << "Podaj liczbe ktora okresli rozmiar tablicy(liczba nie moze byc wieksza od 20)\n";
+	cin >> *wskRozmiar;
+	cout << endl;
+	while (*wskRozmiar > 20)
+	{
+		cout << "Podales zly zakres.Sprobuj jescze raz.\n";
+		cin >> *wskRozmiar;
+		cout << endl;
+	}
+
+}
+void tab(int X[20], int rozmiar)
+{
+	srand(time(NULL));
+	for (int i = 0; i < rozmiar; i++)
+	{
+		X[i] = (rand() % 99) + 1;
+	}
+}
+void piszTab(int X[20], int rozmiar)
+{
+	for (int i = 0; i < rozmiar; i++)
+	{
+		if (i == 5 || i == 10 || i == 15 || i == 20)
+		{
+			cout << endl;
+		}
+		cout << X[i] << " ";
+
+	}
+	cout << endl;
+}
+void sortujTab(int X[20], int rozmiar)
+{
+	cout << endl;
+
+	for (int i = 0; i < rozmiar; i++)
+	{
+		for (int j = 1; j < rozmiar - i; j++)
+		{
+			if (X[j - 1] > X[j])
+			{
+				swap(X[j - 1], X[j]);
+			}
+		}
+
+	}
+}
+void wartoscMinMax(int X[20], int rozmiar, int *wskMinMax)
+{
+	for (int i = 0; i < rozmiar; i++)
+	{
+		if (i == 0)
+		{
+			cout << "Wartosc minimalna tablicy wynosi: " << *wskMinMax << " o indeksie [" << i << "]" << endl;
+		}
+		if (i == (rozmiar - 1))
+		{
+			cout << "Wartoscia maksymalna tablicy jest wartosc: " << *(wskMinMax+(rozmiar-1)) << " o indeksie [" << i << "]" << endl;
+		}
+	}
+}
+void sredniaArytmetyczna(int X[20], int rozmiar)
+{
+	double wynik;
+	double suma = 0;
+	for (int i = 1; i < (rozmiar - 1); i++)
+	{
+		suma += X[i];
+	}
+	wynik = double(suma) / (rozmiar - 2);
+	cout << "Srednia arytmetyczna wartosci znajdujacymi sie pomiedzy Min i Max wynosi: " << wynik;
+}
+int main()
+{
+	int X[20];
+	int rozmiar = 0;
+	int *wskRozmiar = &rozmiar;
+	int *wskMinMax = X;
+	rozmiarTab(wskRozmiar);
+	tab(X, rozmiar);
+	sortujTab(X, rozmiar);
+	piszTab(X, rozmiar);
+	wartoscMinMax(X, rozmiar, wskMinMax);
+	sredniaArytmetyczna(X, rozmiar);
+	_getch();
+}

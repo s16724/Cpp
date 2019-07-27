@@ -1,0 +1,57 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void wypiszDane(int *wskRozmiar,int *wskTabX, int *wskTabY)
+{
+	int wartoscMaksymalna = 10;
+	cout << "Podaj wielkosc tablicy, ktora bedzie miescic sie w przedziale 1-10" << endl;
+	cin >> *wskRozmiar;
+	while (*wskRozmiar > wartoscMaksymalna || *wskRozmiar <= 0)
+	{
+		if (*wskRozmiar > wartoscMaksymalna)
+		{
+			cout << "Podana wartosc jest za duza!!Sprobuj jeszcze raz." << endl;
+			cin >> *wskRozmiar;
+		}
+		else
+		{
+			cout << "Podana watosc jest za mala!!Sprobuj jeszcze raz." << endl;
+			cin >> *wskRozmiar;
+		}
+	}
+	for (int i = 0; i < *wskRozmiar; i++)
+	{
+		cout << "Wprowadz wartosc " << i + 1 << " wektora X  " << endl;
+		cin >> *wskTabX;
+		cout << "Wprowadz wartosc " << i + 1 << " wektora Y  " << endl;
+		cin >> *wskTabY;
+	}
+
+}
+
+void iloczynSkalarny(int *wskRozmiar, int *wskTabX, int *wskTabY,int *wskIloczyn)
+{
+	
+	for (int i = 0; i < *wskRozmiar; i++)
+	{
+		*wskIloczyn += *wskTabX * *wskTabY;
+	}
+	cout << " Wynikiem X i Y jest: " << *wskIloczyn;
+}
+
+int main()
+{
+	int iloczyn = 0;
+	int *wskIloczyn = &iloczyn;
+	int n=0;
+	int *wskRozmiar = &n;
+	int X[10];
+	int *wskTabX = X;
+	int Y[10];
+	int *wskTabY = Y;
+	wypiszDane(wskRozmiar, wskTabX, wskTabY);
+	iloczynSkalarny(wskRozmiar, wskTabX, wskTabY,wskIloczyn);
+	_getch();
+}
