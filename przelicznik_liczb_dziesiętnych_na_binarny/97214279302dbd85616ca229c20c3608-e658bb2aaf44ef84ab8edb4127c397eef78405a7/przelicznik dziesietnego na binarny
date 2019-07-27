@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <conio.h>
+
+using namespace std;
+void wczytajDane(int *wska){
+	cout << "Podaj liczbe w dzisietnym systemie liczbowym by policzyc go na binarny" << endl;
+	cin >> *wska;
+}
+ void liczbaBinarna(int a, int tab[50], int &i){
+	while (a)
+	{
+		tab[i++] = a % 2;
+		a /= 2;
+	}
+	
+} 
+ void odczytWynik(int i, int tab[50]) {
+	 cout << "Po przeliczeniu wynik wychodzi :";
+	 for (int j = i - 1; j >= 0; j--) {
+		 cout << tab[j];
+	 }
+	 cout << endl;
+ }
+
+int main()
+{
+	int a,b, i = 0, tab[50];
+	int *wska = &a;
+	bool petla = true;
+	char znak;
+	while (petla) {
+		wczytajDane(wska);
+		liczbaBinarna(a, tab, i);
+		odczytWynik(i, tab);
+		_getch();
+		cout << "Jesli chcesz zakonczyc nacisnij q \na zeby kontynuowac program na innej liczbie nacisnik kazdy inny klawisz" << endl;
+		cin >> znak;
+		b = (int)znak;
+		_getch;
+			if (b == 113){
+				petla = false;
+		}
+			else {
+				system("cls");
+				a = 0;
+				i = 0;
+			}
+	}
+
+}
+
