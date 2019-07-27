@@ -1,0 +1,117 @@
+#include<iostream>
+#include<conio.h>
+#include <cstdlib>
+#include <ctime>
+
+
+void wczytDane(int n,int tab[])
+{
+
+	if (n <= 100)
+	{
+		tab[n];
+	}
+	
+}
+int jesliWiekszy(int n)
+{
+	if (n > 100)
+	{
+		std::cout << "sprobuj jescze raz(liczba ta nie moze byc wieksza od 100)" <<std:: endl;
+		_getch();
+		exit(0);
+	}
+	 
+}
+void wypTablice(int n,int tab[])
+{
+	for (int i=0 ; i < n; i++)
+	{
+		tab[i] = ((rand() % n) + 9);
+		std::cout << "tablica[" << i << "]" << "=" << tab[i] <<std:: endl;
+	}
+}
+double sredniaArytmetyczna(int n, int tab[])
+{
+	double wynik;
+	double suma = 0;
+	for (int i = 0; i < n; i++)
+	{
+		suma += tab[i];
+	}
+	wynik =double(suma) / n;
+	return wynik;
+}
+
+void ileRazy(int n, int tab[])
+{
+	int ile = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (n == tab[i])
+		{
+			ile += 1;
+		}
+	}
+	std::cout << "ilosc powtorzen liczby n w tablicy wynosi:" << ile <<std:: endl;
+}
+void sumaIleNieparzystych(int n,int tab[])
+{
+	int ileNieParzystych = 0;
+	int sumaNieParzystych = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (tab[i] % 2 != 0)
+		{
+			ileNieParzystych += 1;
+			sumaNieParzystych += tab[i];
+		}
+	}
+	std::cout << "ilosc liczb nieparzystych wynosi:" << ileNieParzystych << std::endl << " a suma tych liczb jest wynik: " << sumaNieParzystych <<std:: endl;
+}
+void maxWynik(int n,int tab[])
+{
+	int wynikMax = tab[0], lokMax;
+	for (int i = 1; i < n; i++)
+	{
+		if (wynikMax < tab[i])
+		{
+			wynikMax = tab[i];
+			lokMax = i;
+		}
+	}
+	std::cout << "wartoscia maksymalna jest wartosc :" << wynikMax << " o indeksie tablica[" << lokMax << "]" << std::endl;
+}
+void minWynik(int n,int tab[])
+{
+	int wynikMin = tab[0], lokMin;
+	for (int i = 1; i < n; i++)
+	{
+		if (wynikMin > tab[i])
+		{
+			wynikMin = tab[i];
+			lokMin = i;
+		}
+	}
+	std::cout << "wartoscia minimalna jest wartosc :" << wynikMin << " o indeksie tablica[" << lokMin << "]";
+}
+using namespace std;
+
+int main()
+{
+	int tab[100];
+	int n;
+	double wynik;
+	cout << "podaj liczbe n ktora okresli rozmiar tablicy" << endl;
+	cin >> n;
+	wczytDane(n,tab);
+	jesliWiekszy(n);
+	wypTablice(n,tab);
+	ileRazy(n, tab);
+	wynik = sredniaArytmetyczna(n, tab);
+	cout << "srednia wynosi " << wynik<<endl;
+	sumaIleNieparzystych(n, tab);
+	maxWynik(n, tab);
+	minWynik(n, tab);
+	_getch();
+}

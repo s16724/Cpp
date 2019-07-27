@@ -1,0 +1,78 @@
+#include<iostream>
+#include<conio.h>
+
+
+
+using namespace std;
+
+int main()
+{
+	int p, q, i = 2, wygrana;
+	bool poprawnyRzut = true;
+	
+		while (poprawnyRzut)
+		{
+			cout << "podaj pierwszy wynik rzutu koscia\n";
+			cin >> p;
+			cout << "podaj drugi wynik rzutu koscia\n";
+			cin >> q;
+			if ((p > 0 && p < 7) && (q > 0 && q < 7))
+			{
+				poprawnyRzut = false;
+			}
+			else
+			{
+				cout << "podales bledny wynik\n ";
+
+			}
+		}
+		if (p%i == 0 && (q == 2 || q == 4 || q == 5))
+		{
+			wygrana = p + (3 * q);
+			if (p + q == 5)wygrana += 5;
+			cout << "liczba punktow wynosi: " << wygrana;
+			_getch();
+
+		}
+		else if (p%i == 0 && (q == 1 || q == 3 || q == 6))
+		{
+			wygrana = 2 * q;
+			if (p + q == 5)wygrana += 5;
+			cout << "liczba punktow wynosi: " << wygrana;
+			_getch();
+		}
+		if (p%i != 0 && (q == 1 || q == 3 || q == 6))
+		{
+			if (p == q)
+			{
+				wygrana = (5 * p) + 3;
+				if (p + q == 5)wygrana += 5;
+				cout << "liczba punktow wynosi: " << wygrana;
+				_getch();
+			}
+			else if (p != q)
+			{
+				wygrana = (2 * q) + p;
+				if (p + q == 5)wygrana += 5;
+				cout << "liczba punktow wynosi: " << wygrana;
+				_getch();
+
+			}
+		}
+		if (p%i != 0 && (q == 2 || q == 4 || q == 5))
+		{
+			if (p > q)
+			{
+				wygrana = q + 4;
+			}
+			else
+			{
+				wygrana = p + 4;
+			}
+			if (p + q == 5)wygrana += 5;
+			cout << "liczba punktow wynosi: " << wygrana;
+			_getch();
+		}
+		
+	}
+

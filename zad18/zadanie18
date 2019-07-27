@@ -1,0 +1,52 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+void wypiszDane(int &n, int X[], int Y[])
+{
+	int wartoscMaksymalna = 10;
+	cout << "Podaj wielkosc tablicy, ktora bedzie miescic sie w przedziale 1-10" << endl;
+	cin >> n;
+	while (n > wartoscMaksymalna || n <= 0)
+	{
+		if (n > wartoscMaksymalna)
+		{
+			cout << "Podana wartosc jest za duza!!Sprobuj jeszcze raz."<<endl;
+			cin >> n;
+		}
+		else
+		{
+			cout << "Podana watosc jest za mala!!Sprobuj jeszcze raz."<<endl;
+			cin >> n;
+		}
+	}
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Wprowadz wartosc " << i + 1 << " wektora X  "<<endl;
+		cin >> X[i];
+		cout << "Wprowadz wartosc " << i + 1 << " wektora Y  "<<endl;
+		cin >> Y[i];
+	}
+
+}
+
+void iloczynSkalarny(int n, int X[], int Y[])
+{
+	int iloczyn = 0;
+	for (int i = 0; i < n; i++)
+	{
+		iloczyn += X[i] * Y[i];
+	}
+	cout << " Wynikiem X i Y jest: " << iloczyn;
+}
+
+int main()
+{
+	int n;
+	int X[10];
+	int Y[10];
+	wypiszDane(n, X, Y);
+	iloczynSkalarny(n, X, Y);
+	_getch();
+}

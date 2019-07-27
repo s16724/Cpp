@@ -1,0 +1,126 @@
+#include<iostream>
+#include<conio.h>
+
+using namespace std;
+
+int main()
+{
+	float h, brutto, netto, podatek,nadgodziny;
+	char wybor;
+	bool programDziala = true;
+	cout << "Wybierz z menu kategorie zaszeregowania:" << endl;
+	cout << "A - 15 zl" << endl;
+	cout << "B - 25 zl" << endl;
+	cout << "C - 30 zl " << endl;
+	cout << "D - 35 zl" << endl;
+	cout << "Q - KONIEC!" << endl;
+	while (programDziala){
+		cin >> wybor;
+		switch (wybor){
+		case('a'):
+			cout << "podaj ilosc godzin, ktore przepracowal pracownik w ciagu tygodnia \n h=";
+			cin >> h;
+			if (h > 40) {
+				nadgodziny = ((h - 40) * 15) * 2;
+				brutto = (40 * 15) + nadgodziny;
+			}
+			else{
+				brutto = h * 15;
+			}
+			if (brutto <= 700){
+				podatek = brutto*0.15;
+				netto = brutto - podatek;
+			}
+			else if (brutto<1200){
+				podatek = brutto*0.20;
+				netto = brutto - podatek;
+			}
+			else{
+				podatek = brutto*0.25;
+				netto = brutto - podatek;
+			}
+			cout << "w tym tygodniu pracownik zarobil:\n " << brutto << " zl brutto\n "<<netto<<" zl netto\n";
+			break;
+		case('b'):
+			cout << "podaj ilosc godzin, ktore przepracowal pracownik w ciagu tygodnia \n h=";
+			cin >> h;
+			if (h > 40) {
+				nadgodziny = ((h - 40) * 25) * 2;
+				brutto = (40 * 25) + nadgodziny;
+			}
+			else{
+				brutto = h * 25;
+			}
+			if (brutto <= 700){
+				podatek = brutto*0.15;
+				netto = brutto - podatek;
+			}
+			else if (brutto<1200){
+				podatek = brutto*0.20;
+				netto = brutto - podatek;
+			}
+			else{
+				podatek = brutto*0.25;
+				netto = brutto - podatek;
+
+			}
+			cout << "w tym tygodniu pracownik zarobil:\n " << brutto << " zl brutto\n " << netto << " zl netto\n";
+			break;
+		case('c'):
+			cout << "podaj ilosc godzin, ktore przepracowal pracownik w ciagu tygodnia \n h=";
+			cin >> h;
+			if (h > 40) {
+				nadgodziny = ((h - 40) * 30) * 2;
+				brutto = (40 * 30) + nadgodziny;
+			}
+			else{
+				brutto = h * 30;
+			}
+			if (brutto <= 700){
+				podatek = brutto*0.15;
+				netto = brutto - podatek;
+			}
+			else if (brutto<1200){
+				podatek = brutto*0.20;
+				netto = brutto - podatek;
+			}
+			else{
+				podatek = brutto*0.25;
+				netto = brutto - podatek;
+
+			}
+			cout << "w tym tygodniu pracownik zarobil:\n " << brutto << " zl brutto\n " << netto << " zl netto\n";
+			break;
+		case('d'):
+			cout << "podaj ilosc godzin, ktore przepracowal pracownik w ciagu tygodnia \n h=";
+			cin >> h;
+			if (h > 40) {
+				nadgodziny = ((h - 40)*35)*2;
+				brutto = (40 * 35) + nadgodziny;
+			}
+			else{
+					brutto = h * 35;
+			}
+			if (brutto <= 700){
+				podatek = brutto*0.15;
+				netto = brutto - podatek;
+			}
+			else if (brutto<1200){
+				podatek = brutto*0.20;
+				netto = brutto - podatek;
+			}
+			else{
+				podatek = brutto*0.25;
+				netto = brutto - podatek;
+			}
+			cout << "w tym tygodniu pracownik zarobil:\n " << brutto << " zl brutto\n " << netto << " zl netto\n";
+			break;
+		case('q'):
+			programDziala = false;
+			break;
+		default:
+			cout << "Wybierz opcje A, B, C, D, Q.";
+
+		}
+	}
+}

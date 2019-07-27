@@ -1,0 +1,34 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+	int n, p, q, p1;
+	int modulio, suma;
+	bool programDziala = true;
+	while (programDziala)
+	{
+		cout << "podaj wartosc\n n=";
+		cin >> n;
+		suma = 0;
+		p = sqrt(n);
+		while (p > 1)
+		{
+			
+			modulio = n%p;
+			if (modulio == 0)
+			{
+				suma += p;
+				p1 = n / p;
+				if (p1 != p)
+				{
+					suma += p1;
+					p -= 1;
+				}
+				else
+				{
+					p -= 1;
+				}
+			}

@@ -1,0 +1,38 @@
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+int main()
+{
+	double n, i, k, x, y=-1, m;
+	double silnia1, silnia2, silnia3;
+
+	cout << "podaj wartosc zmiennej\n n=" ;
+	cin >> n;
+	cout << "podaj wartosc zmiennej\n k= ";
+	cin >> k;
+	silnia1 = 1;
+	for (i = 1; i <= n; i++)
+	{
+		silnia1= silnia1* i;
+	}
+	silnia2 = 1;
+	for (i = 1; i <= k; i++)
+	{
+		silnia2 = silnia2 * i;
+	}
+	x = n - k;
+	if (x < 0)
+	{
+		x = x*y;
+	}
+	 silnia3 = 1;
+	for (i = 1; i <= x; i++)
+	{
+		silnia3 = silnia3 * i;
+	}
+	m = silnia1 / (silnia2*silnia3);
+	cout <<" wynikiem rownania m=n!/k!(n-k)! jest liczba " <<m << endl;
+	_getch();
+}

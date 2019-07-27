@@ -1,0 +1,42 @@
+#include <iostream>
+#include <conio.h>
+#include <string>
+
+using namespace std;
+
+string wpiszDane()
+{
+	string palindrom;
+	cout << "podaj wyraz, ktory mamy zamiar sprawdzic:" << endl;
+	cin >> palindrom;
+	return palindrom;
+}
+
+bool sprWyraz(string palindrom)
+{
+	int dl = palindrom.length();
+	int j = dl - 1;
+	for (int i = 0; i<dl; i++)
+	{
+
+		if (palindrom[i] != palindrom[j])
+		{
+			return 0;
+		}
+		j--;
+	}
+	return 1;
+}
+int main()
+{
+	string palindrom = wpiszDane();
+	if (sprWyraz(palindrom))
+	{
+		cout << "Podany wyraz jest palindromem";
+	}
+	else
+	{
+		cout << "Podany wyraz nie moze byc palindromem";
+	}
+	_getch();
+}

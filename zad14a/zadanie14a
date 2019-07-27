@@ -1,0 +1,61 @@
+#include<iostream>
+#include<conio.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+
+
+using namespace std;
+
+int main()
+{
+	double a, b, c, fa, fb, fc,pierw,liczydlo=0;
+	const double dokladnosc = 1e-7;
+	cout << "podaj wartosc a \n a=";
+	cin >> a;
+	cout << " podaj wartosc b \n b=";
+	cin >> b;
+	fa = pow(M_E, (-1, 5 * a)) - 0,3 * (pow(a, 2));
+	fb = pow(M_E, (-1, 5 * b)) - 0,3 * (pow(b, 2));
+	if(fa==0)
+	{
+		pierw = a;
+		cout << "Wynikiem jest liczba " << pierw << endl;
+		_getch();
+		EXIT_SUCCESS;
+	}
+	
+	else if(fb == 0)
+	{
+		pierw = b;
+		cout << "Wynikiem jest liczba " << pierw <<endl ;
+		_getch();
+		EXIT_SUCCESS;
+	}
+	do
+	{
+		liczydlo++;
+		c = (a + b) / 2;
+		fc = pow(M_E, (-1, 5 * c)) - 0, 3 * (pow(c, 2));
+		if (fc == 0)
+		{
+			pierw = c;
+			cout << "Wynikiem jest liczba " << pierw << endl;
+			_getch();
+			EXIT_SUCCESS;
+		}
+		if ((fa*fc) <0)
+		{
+			b = c;
+		}
+		else
+		{
+			a = c;
+		}
+	} 
+	while (a - b >= dokladnosc);
+	pierw = c;
+	cout << "rozwiazaniem jest " << pierw;
+	cout << " ilosc powtorzen " << liczydlo;
+	_getch();
+}

@@ -1,0 +1,36 @@
+#include<iostream>
+#include<conio.h>
+
+using namespace std;
+
+int main()
+{
+	int a, b,a1,b1;
+	cout << "Podaj liczbe a \n a=";
+	cin >> a;
+	cout << "Podaj liczbe b \n b=";
+	cin >> b;
+	while (a<=0||b<=0)
+	{
+		cout << "Najmniejsza wspolna wielokrotnosc rowna 0";
+		_getch();
+		return EXIT_SUCCESS;
+	}
+	a1=a;
+	b1=b;
+	while (a1 != b1)
+	{
+		if (a1 > b1)
+		{
+			b1 += b;
+		}
+		else
+		{
+			a1 += a;
+		}
+		
+	}
+	if (a1 = b1)cout << "Najmniejsza wspolna wielokrotnosc jest rowna " << a1;
+	_getch();
+	return EXIT_SUCCESS;
+}

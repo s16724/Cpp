@@ -1,0 +1,36 @@
+#include<iostream>
+#include<conio.h>
+
+using namespace std;
+
+int main()
+{
+	int a, b, a1, b1;
+	cout << "Podaj liczbe a \n a=";
+	cin >> a;
+	cout << "Podaj liczbe b \n b=";
+	cin >> b;
+	if (a <= 0 || b <= 0)
+	{
+		cout << "Brak rozwiazania";
+		_getch();
+		return EXIT_SUCCESS;
+	}
+	a1 = a;
+	b1 = b;
+	while (a1 != b1)
+	{
+		if (a1 > b1)
+		{
+			a1-=b1;
+		}
+		else
+		{
+			b1-= a1;
+		}
+
+	}
+	if (a1 = b1)cout << "Najwiekszy wspolny podzielnik jest rowny " << a1;
+	_getch();
+	return EXIT_SUCCESS;
+}
