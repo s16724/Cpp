@@ -1,0 +1,173 @@
+#include <iostream>
+#include <conio.h>
+#include <Windows.h>
+
+
+using namespace std;
+
+void wstep()
+{
+
+	cout << "Jest to program ktory rysuje ponizsza figure znakiem ASCII\n";
+	cout << "                                 *\n";
+	cout << "                             *\n";
+	cout << "                         *\n";
+	cout << "                     *\n";
+	cout << "                  *\n";
+	cout << "                     *\n";
+	cout << "                         *\n";
+	cout << "                             *\n";
+	cout << "                                 *\n";
+	cout << "Program ma za zadanie umozliwic:\n";
+	cout << "-wybor znaku kodu\n";
+	cout << "-wczytanie poczatkowego znaku figury\n";
+	cout << "-dowolne przesuwanie figury\n";
+	cout << "-zmiejszanie i zwieksznie rozmiaru figury \n";
+	cout << "-ograniczenie przesuwania i powiekszania figury do obszau ekranu\n";
+	_getch();
+}
+void podajDane(char *wskascii, int *wskrozmiar)
+{
+	char znak;
+	int liczba = 0;
+	cout << "Podaj znak ASCII z klawiatury" << endl;
+	cin >> znak;
+	liczba = (int)znak;
+	while (liczba < 33 || liczba>126)
+	{
+		{
+			cout << "znak nie nalezy do ASCII.Sprobuj jeszcze raz:";
+			cin >> znak;
+			liczba = (int)znak;
+		}
+	}
+	*wskascii = znak;
+	cout << "Podaj poczatkowy rozmiar figury " << endl;
+	cin >> *wskrozmiar;
+}
+void WymiaryOkna(int *wskX, int *wskY, int rozmiar)
+{
+	HANDLE window = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO info;
+	GetConsoleScreenBufferInfo(window, &info);
+	*wskX = info.srWindow.Right;
+	*wskY = info.srWindow.Bottom ;
+}
+int ograniczRozmiarFigury(int rozmiar, int maxX, int maxY)
+{
+	if (rozmiar> maxX || rozmiar > maxY)
+	{
+		return ((min(maxX, maxY)) / 2) + 1;
+	}
+
+	else
+	{
+		return rozmiar;
+	}
+}
+void figura(char ascii, int x, int y, int rozmiar)
+{
+	system("cls");
+	
+	for (int i = 0; i < y; i++) cout << endl;
+	for (int i = 1; i <= (rozmiar * 2) - 1; i++)
+	{
+		for (int j = 0; j < x; j++) cout << " ";
+		for (int j = 1; j <= rozmiar; j++)
+		{
+
+			if (i == rozmiar - (j - 1) || i == rozmiar + (j - 1))
+			{
+				cout << ascii;
+			}
+
+			else
+			{
+				cout << " ";
+			}
+		}
+		cout << endl;
+	}
+}
+void ruch(char ascii, int rozmiar, int &wybor, int maxX, int maxY, int x, int y)
+{
+	
+	bool petla = true;	
+	while (petla)
+	{
+		char wybor = _getch();
+		switch (wybor)
+		{
+		case 72://góra
+			y--;
+			if (y < 0) y = 0;
+			figura(ascii, x, y, rozmiar);
+			break;
+		case 80://dół
+			y++;
+			if (y > maxY - rozmiar * 2) y = maxY - rozmiar * 2;
+			figura(ascii, x, y, rozmiar);
+			break;
+		case 75://lewo
+			x--;
+			if (x < 0) x = 0;
+			figura(ascii, x, y, rozmiar);
+			break;
+		case 77://prawo
+			x++;
+			if (x > maxX - rozmiar) x = maxX - rozmiar;
+			figura(ascii, x, y, rozmiar);
+			break;
+		case 61://plus
+			rozmiar++;
+			if (y > maxY - rozmiar * 2 + 2) rozmiar--;
+			figura(ascii, x, y, rozmiar);
+			break;
+		case 45://minus
+			rozmiar--;
+			if (rozmiar < 1) rozmiar = 1;
+			figura(ascii, x, y, rozmiar);
+			break;
+			_getch();
+		case 27:
+			cout << "Postanowiles wyjsc";
+			_getch;
+			petla = false;
+			break;
+		}
+	}
+}
+void niewidzialnyKursor()
+{
+	::HANDLE hConsoleOut = ::GetStdHandle(STD_OUTPUT_HANDLE);
+	::CONSOLE_CURSOR_INFO hCCI;
+	::GetConsoleCursorInfo(hConsoleOut, &hCCI);
+	hCCI.bVisible = FALSE;
+	::SetConsoleCursorInfo(hConsoleOut, &hCCI);
+}
+
+
+
+int main()
+{
+	const int Esq = 27;
+	char ascii = '+';
+	char *wskascii = &ascii;
+	
+	int rozmiar = 0;
+	int *wskrozmiar = &rozmiar;
+	int maxX = 0, maxY = 0;
+	int *wskX = &maxX, *wskY = &maxY;
+	int x, y;
+	int wybor;
+	wstep();
+	podajDane(wskascii, wskrozmiar);
+	WymiaryOkna(wskX, wskY, rozmiar);
+	rozmiar = ograniczRozmiarFigury(rozmiar, maxX, maxY);
+	y = maxY - (rozmiar)*2;
+	x = maxX - rozmiar;
+	figura(ascii, x, y, rozmiar);
+	niewidzialnyKursor();
+	ruch(ascii, rozmiar, wybor,maxX,maxY,x,y);
+	_getch();
+}
